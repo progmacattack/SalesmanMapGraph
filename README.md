@@ -1,91 +1,177 @@
 # SalesmanMapGraph
-
 OVERALL DESIGN STRUCTURE FOR MAP GRAPH AND OPTIONAL EXTENSIONS
+
 CLASSES: MapGraph
+
 		 SalesmanMapGraph extends MapGraph
+
 		 MapNode
+
 		 MapEdge
+
 		 GraphUtility
+
 		 MapGraphTester
+
 		 SalesmanMapGraphTester
 
+
+
 ---------------
+
 class MapGraph
+
 ---------------
+
 Map<GeographicPoint, MapNode> verticesMap;  //all vertices in graph. map relates nodes to geographicpoints
+
 Map<Integer, Edge> edgeMap; //a map of all edges
+
 List<MapNode> visited;
 
+
+
 public methods
+
 ---------------
+
 int getNumVertices()
+
 set<GeographicPoint> getVertices()
+
 int getNumEdges()
+
 boolean addVertex(GeographicPoint location)
+
 void addEdge(GeographicPoint from, GeographicPoint to, String roadName,
+
 		String roadType, double length)
+
 List<GeographicPoint> bfs(GeographicPoint start, GeographicPoint goal) //breadth-first search
+
 List<GeographicPoint> bfs(GeographicPoint start, 
+
 		GeographicPoint goal, Consumer<GeographicPoint> nodeSearched) //has front-end hook
+
 List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal)
+
 List<GeographicPoint> dijkstra(GeographicPoint start, 
+
 		GeographicPoint goal, Consumer<GeographicPoint> nodeSearched) //has front-end hook
+
 List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal)
+
 List<GeographicPoint> aStarSearch(GeographicPoint start, 
+
 		 GeographicPoint goal, Consumer<GeographicPoint> nodeSearched) //has front-end hook			
+
 void main(String[] args) //contains some tests
+
+
 
 getters for private members
 
+
+
 ---------------------------------------
+
 class SalesmanMapGraph extends MapGraph
+
 ----------------------------------------
+
 List<GeographicPoint> destinations;
+
 List<GeographicPoint> suggestedRoute;
 
+
+
 public methods
+
 addDestination(GeographicPoint destination) - add a destination
+
 addOrigin(GeographicPoint origin) - add an origin
+
 bestPathGreedy() - find a route from origin to all destinations and back to origin using greedy algorithm
 
+
+
 -----------------------------------
+
 class MapNode implements Comparable
+
 -----------------------------------
+
 GeographicPoint location
+
 List<MapNode> outgoingNeighbors
+
 double distanceTraveled
+
 predictedDistanceToDestination
 
+
+
 public methods
+
 ---------------
+
 addOutgoingNeighbor(MapNode neighbor)
+
 int compareTo(MapNode other)
+
 clearDistances()
+
 getters and setters
 
 
+
+
+
 ----------
+
 class Edge
+
 ----------
+
 String roadType
+
 double length
+
 MapNode begin
+
 MapNode end
 
+
+
 public methods
+
 --------------
+
 getters and setters
+
+
+
 
 
 -------------------
+
 class GraphUtility
+
 --------------------
+
 static Integer generateHashMapKeyForEdge(MapNode start, MapNode end) //create a key for each edge based on origin and destination
 
+
+
 ----------------------------------------------------------
+
 classes MapGraphTester and SalesmanMapGraphTester
+
 ----------------------------------------------------------
+
 test class
+
+
 
 
 The extensions adds a subclass, SalesmanMapGraph extending MapGraph. The subclass provides
